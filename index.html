@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USA Kitchen Converter - Turkey, Air Fryer, Pan & Substitution Calculator</title>
+<meta name="description" content="Free USA Kitchen Tools: Turkey Roasting Time, Air Fryer to Oven Converter, Ingredient Substitution, Cake Pan Size Calculator.">
+<meta name="keywords" content="turkey roasting calculator, air fryer converter, ingredient substitution, cake pan calculator">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#d84315">
+<style>
+:root{--p:#d84315;--bg:#fffaf5;--card:#fff;--text:#222;--mut:#666;--b:#ffe0b2}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+header{position:sticky;top:0;z-index:99;background:#fff;border-bottom:2px solid var(--b);padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.3rem;color:var(--p)}
+.logo svg{width:30px;height:30px}
+nav a{margin-left:14px;text-decoration:none;color:#222;font-weight:600;font-size:.92rem}
+nav a:hover{color:var(--p)}
+.container{max-width:1000px;margin:auto;padding:18px 14px}
+.hero{background:linear-gradient(135deg,#fff3e0,#ffccbc);border-radius:18px;padding:26px 20px;text-align:center;border:1px solid var(--b)}
+.hero h1{font-size:1.9rem}
+.hero p{max-width:650px;margin:10px auto;color:var(--mut);font-size:.95rem}
+.tool-card{background:var(--card);border-radius:16px;padding:20px;border:1px solid #eee;box-shadow:0 4px 14px rgba(0,0,0,.05);margin:20px 0}
+.tool-head{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.icon{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;font-size:22px;color:#fff}
+.c1{background:#d84315}.c2{background:#1565c0}.c3{background:#2e7d32}.c4{background:#6a1b9a}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:700px){.grid2{grid-template-columns:1fr}}
+label{font-weight:600;font-size:.9rem;display:block;margin:8px 0 4px}
+input,select{width:100%;padding:11px 12px;border:1.6px solid #ddd;border-radius:10px;font-size:1rem}
+input:focus,select:focus{outline:none;border-color:var(--p)}
+.btn{background:var(--p);color:#fff;border:0;padding:12px 18px;border-radius:10px;font-weight:700;cursor:pointer;width:100%;margin-top:12px}
+.result{background:#f1f8e9;border:1.5px solid #aed581;border-radius:10px;padding:12px;margin-top:12px;font-weight:600;display:none}
+.result.show{display:block}
+.small{color:var(--mut);font-size:.9rem;margin-top:8px}
+footer{background:#1e1e1e;color:#ddd;padding:28px 16px;margin-top:30px;border-radius:18px 18px 0 0}
+footer a{color:#ffab91;text-decoration:none}
+footer a:hover{text-decoration:underline}
+.page{max-width:1000px;margin:18px auto;padding:18px;background:#fff;border-radius:14px;border:1px solid #eee;display:none}
+.page.active{display:block}
+.linkbar{display:flex;gap:18px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.linkbar button{background:transparent;border:1.5px solid var(--p);color:var(--p);padding:8px 16px;border-radius:20px;font-weight:700;cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">
+<svg viewBox="0 0 24 24" fill="#d84315"><path d="M8.1 13.34L3.91 9.16A4.92 4.92 0 0 1 6 6a5 5 0 0 1 5 5c0 1.07-.34 2.07-.92 2.9L8.1 13.34M14 6a5 5 0 0 1 5 5c0 2.76-2.24 5-5 5s-5-2.24-5-5 2.24-5 5-5m0-2a7 7 0 0 0-7 7c0 3.87 3.13 7 7 7s7-3.13 7-7-3.13-7-7-7Z"/></svg>
+USA KITCHEN CONVERTER
+</div>
+<nav>
+<a href="#turkey">Turkey</a>
+<a href="#airfryer">Air Fryer</a>
+<a href="#substitute">Substitute</a>
+<a href="#cake">Cake Pan</a>
+</nav>
+</header>
+
+<div class="container">
+<div class="hero">
+<h1>4 Essential USA Kitchen Calculators</h1>
+<p>Fast, accurate and free tools for American kitchens. All in one page, no ads, no signup.</p>
+</div>
+
+<!-- TOOL 1 -->
+<div class="tool-card" id="turkey">
+<div class="tool-head"><div class="icon c1">🦃</div><h2>Turkey Roasting Time Calculator</h2></div>
+<div class="grid2">
+<div>
+<label>Weight (lbs)</label>
+<input type="number" id="turkeyWeight" value="12">
+<label>Stuffed?</label>
+<select id="turkeyStuffed"><option value="no">Unstuffed</option><option value="yes">Stuffed</option></select>
+<button class="btn" onclick="calcTurkey()">Calculate Time</button>
+<div class="result" id="turkeyResult"></div>
+</div>
+<div>
+<table style="width:100%;border-collapse:collapse;font-size:.9rem">
+<tr><th style="border:1px solid #ddd;padding:6px;background:#fff3e0">Weight</th><th style="border:1px solid #ddd;padding:6px;background:#fff3e0">Unstuffed</th><th style="border:1px solid #ddd;padding:6px;background:#fff3e0">Stuffed</th></tr>
+<tr><td style="border:1px solid #ddd;padding:6px">8-12 lbs</td><td style="border:1px solid #ddd;padding:6px">2h45m - 3h</td><td style="border:1px solid #ddd;padding:6px">3h - 3h30m</td></tr>
+<tr><td style="border:1px solid #ddd;padding:6px">12-16 lbs</td><td style="border:1px solid #ddd;padding:6px">3h - 4h</td><td style="border:1px solid #ddd;padding:6px">3h30m - 4h30m</td></tr>
+<tr><td style="border:1px solid #ddd;padding:6px">20-24 lbs</td><td style="border:1px solid #ddd;padding:6px">4h30m - 5h</td><td style="border:1px solid #ddd;padding:6px">5h - 5h30m</td></tr>
+</table>
+<p class="small">Cook at 325°F. Internal temp 165°F breast. Rest 20 min.</p>
+</div>
+</div>
+</div>
+
+<!-- TOOL 2 -->
+<div class="tool-card" id="airfryer">
+<div class="tool-head"><div class="icon c2">🍟</div><h2>Air Fryer to Oven Converter</h2></div>
+<div class="grid2">
+<div>
+<label>Oven Temp (°F)</label>
+<input type="number" id="ovenTemp" value="400">
+<label>Oven Time (min)</label>
+<input type="number" id="ovenTime" value="20">
+<button class="btn" onclick="calcAirFryer()">Convert</button>
+<div class="result" id="airResult"></div>
+</div>
+<div>
+<div style="background:#e3f2fd;padding:12px;border-radius:10px;font-size:.92rem">
+<b>Formula:</b> Air Fryer Temp = Oven - 25°F<br>
+Air Fryer Time = Oven Time × 0.8<br><br>Example: 400°F 20min → 375°F 16min
+</div>
+</div>
+</div>
+</div>
+
+<!-- TOOL 3 -->
+<div class="tool-card" id="substitute">
+<div class="tool-head"><div class="icon c3">🥚</div><h2>Ingredient Substitution Tool</h2></div>
+<div class="grid2">
+<div>
+<label>Missing Ingredient</label>
+<select id="missingIng" onchange="calcSub()">
+<option value="">-- Select --</option>
+<option value="egg">Egg (1 egg)</option>
+<option value="butter">Butter (1 cup)</option>
+<option value="milk">Milk (1 cup)</option>
+<option value="bakingpowder">Baking Powder (1 tsp)</option>
+<option value="flour">Flour (1 cup)</option>
+<option value="sugar">Sugar (1 cup)</option>
+<option value="oil">Oil (1 cup)</option>
+</select>
+<div class="result show" id="subResult">Select ingredient.</div>
+</div>
+<div>
+<table style="width:100%;border-collapse:collapse;font-size:.9rem">
+<tr><th style="border:1px solid #ddd;padding:6px;background:#e8f5e9">Need</th><th style="border:1px solid #ddd;padding:6px;background:#e8f5e9">Use (US)</th></tr>
+<tr><td style="border:1px solid #ddd;padding:6px">1 Egg</td><td style="border:1px solid #ddd;padding:6px">1/4 cup applesauce</td></tr>
+<tr><td style="border:1px solid #ddd;padding:6px">1 cup Butter</td><td style="border:1px solid #ddd;padding:6px">1 cup margarine</td></tr>
+</table>
+</div>
+</div>
+</div>
+
+<!-- TOOL 4 -->
+<div class="tool-card" id="cake">
+<div class="tool-head"><div class="icon c4">🎂</div><h2>Cake Pan Size & Serving Calculator</h2></div>
+<div class="grid2">
+<div>
+<label>Your Recipe Pan</label>
+<select id="fromPan"><option value="8round">8-inch Round (50 sq in)</option><option value="9round">9-inch Round (63.6)</option><option value="9x13">9x13 (117)</option><option value="8square">8x8 Square (64)</option></select>
+<label>Want to Use</label>
+<select id="toPan"><option value="9round">9-inch Round</option><option value="10round">10-inch Round</option><option value="8round">8-inch Round</option><option value="9x13">9x13 Pan</option><option value="10square">10x10 Square</option></select>
+<button class="btn" onclick="calcPan()">Convert Recipe</button>
+<div class="result" id="panResult"></div>
+</div>
+<div>
+<div style="background:#f3e5f5;padding:12px;border-radius:10px;font-size:.92rem">
+Multiply ingredients by New Area ÷ Old Area.<br>
+Larger pan = less time, smaller = more time.
+</div>
+</div>
+</div>
+</div>
+
+<div class="linkbar">
+<button onclick="openPage('about')">About Us</button>
+<button onclick="openPage('privacy')">Privacy Policy</button>
+<button onclick="openPage('contact')">Contact Us</button>
+</div>
+
+</div>
+
+<div id="about" class="page">
+<h2>About Us</h2>
+<p style="margin-top:10px">USA Kitchen Converter was created to help home cooks in the United States with everyday kitchen calculations. We provide four free, fast and accurate tools: Turkey Roasting Time Calculator for Thanksgiving and holidays, Air Fryer to Oven Converter for modern kitchens, Ingredient Substitution Tool for baking emergencies, and Cake Pan Size Calculator for perfect baking.</p>
+<p style="margin-top:10px">Our mission is simple: make cooking easier with tools that work instantly, without ads or signup. All calculations follow USDA and standard US measurements (pounds, Fahrenheit, cups).</p>
+<button class="btn" style="width:auto;margin-top:12px" onclick="closePages()">Back to Tools</button>
+</div>
+
+<div id="privacy" class="page">
+<h2>Privacy Policy</h2>
+<p style="margin-top:10px">We respect your privacy. USA Kitchen Converter does not collect, store or share any personal information. All calculators run directly in your browser (client-side JavaScript). No data is sent to any server.</p>
+<p style="margin-top:10px"><b>Cookies:</b> We do not use cookies. If we add Google AdSense in future, Google may use cookies to serve ads. You can disable cookies in your browser settings.</p>
+<p style="margin-top:10px"><b>Contact:</b> For privacy questions, contact us via Contact page.</p>
+<button class="btn" style="width:auto;margin-top:12px" onclick="closePages()">Back to Tools</button>
+</div>
+
+<div id="contact" class="page">
+<h2>Contact Us</h2>
+<p style="margin-top:10px">Have a question, suggestion or found a bug? We'd love to hear from you.</p>
+<div style="margin-top:12px;background:#fff3e0;padding:12px;border-radius:10px">
+<p><b>Email:</b> usakitchenconverter@gmail.com</p>
+<p><b>Response Time:</b> Within 24-48 hours</p>
+</div>
+<form onsubmit="return false" style="margin-top:12px">
+<label>Your Message</label>
+<textarea style="width:100%;padding:10px;border-radius:10px;border:1.6px solid #ddd;min-height:90px" placeholder="Write your message..."></textarea>
+<button class="btn" onclick="alert('Thanks! Message received (demo). Please email us at usakitchenconverter@gmail.com')">Send Message</button>
+</form>
+<button class="btn" style="width:auto;margin-top:12px;background:#333" onclick="closePages()">Back to Tools</button>
+</div>
+
+<footer>
+<div style="text-align:center">
+<p>© 2026 USA Kitchen Converter - Free Tools for US Kitchens</p>
+<p style="margin-top:8px"><a href="#" onclick="openPage('about');return false;">About</a> | <a href="#" onclick="openPage('privacy');return false;">Privacy Policy</a> | <a href="#" onclick="openPage('contact');return false;">Contact</a></p>
+</div>
+</footer>
+
+<script>
+function calcTurkey(){
+ const w=parseFloat(document.getElementById('turkeyWeight').value)||0;
+ const stuffed=document.getElementById('turkeyStuffed').value;
+ let minPerLb = stuffed==='yes'? 19 : 14;
+ let totalMin = w*minPerLb;
+ let h=Math.floor(totalMin/60), m=Math.round(totalMin%60);
+ let r=document.getElementById('turkeyResult');
+ r.classList.add('show');
+ r.innerHTML=`For ${w} lbs ${stuffed==='yes'?'stuffed':'unstuffed'}: <b>${h}h ${m}m at 325°F</b><br>Rest 20 min extra.`;
+}
+function calcAirFryer(){
+ const ot=parseFloat(document.getElementById('ovenTemp').value)||0;
+ const om=parseFloat(document.getElementById('ovenTime').value)||0;
+ const at=ot-25, am=Math.round(om*0.8);
+ const r=document.getElementById('airResult');
+ r.classList.add('show');
+ r.innerHTML=`Oven ${ot}°F ${om}min → <b>Air Fryer ${at}°F ${am}min</b>`;
+}
+function calcSub(){
+ const map={
+  egg:"1 egg = 1/4 cup unsweetened applesauce OR 1 tbsp flax + 3 tbsp water",
+  butter:"1 cup butter = 1 cup margarine OR 3/4 cup coconut oil",
+  milk:"1 cup milk = 1 cup oat milk OR 1/2 cup evaporated + 1/2 cup water",
+  bakingpowder:"1 tsp baking powder = 1/4 tsp baking soda + 1/2 tsp cream of tartar",
+  flour:"1 cup flour = 1 cup cake flour + 2 tbsp OR 1 cup whole wheat + 2 tbsp water",
+  sugar:"1 cup sugar = 1 cup brown sugar OR 3/4 cup honey (reduce liquid)",
+  oil:"1 cup oil = 1 cup applesauce (low fat) OR 1 cup melted butter"
+ };
+ const v=document.getElementById('missingIng').value;
+ const r=document.getElementById('subResult');
+ if(v) r.innerHTML="✅ "+map[v];
+}
+function calcPan(){
+ const areas={"8round":50.26,"9round":63.61,"10round":78.54,"8square":64,"10square":100,"9x13":117};
+ const from=document.getElementById('fromPan').value;
+ const to=document.getElementById('toPan').value;
+ const mult=areas[to]/areas[from];
+ const r=document.getElementById('panResult');
+ r.classList.add('show');
+ r.innerHTML=`Multiply by <b>${mult.toFixed(2)}x</b><br>1 cup → ${(1*mult).toFixed(2)} cups`;
+}
+function openPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ window.scrollTo({top: document.getElementById(id).offsetTop-20, behavior:'smooth'});
+}
+function closePages(){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+window.onload=()=>{calcSub();};
+</script>
+</body>
+</html>
